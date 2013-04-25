@@ -90,6 +90,14 @@
         Restricting the PD Controller to 5Hz made the system unusable. For long distances it only seemed to ocilate around the target a bit, but for the short distance of 5 degrees it got stuck in an ocilating loop and never recovered.
       </p>
 
+      <h3>Recap</h3>
+      <p>
+        I found this assignment fun, but struggled a bit with the PD Controller. I think most of this comes from lack of experience with C, and trouble getting long, int, and rounding errors to workout. How Kp is supposed to affect the PD Controller is lost of me. It seems like my system was working best when Kp was 0 and therefore removing the entire velocity adjustment from the equation.
+      </p>
+      <p>
+        Its likely that the implementation of my equation is flawed somehow, especially my calculation of velocity since I didn't really try to work in the fact that it should really be a float and not just an integer. Also my motor contol limited the range of the motor, so there was no ill affect of my equation calculating torques outside the range of the motor. It would just go at max speed until the equation slowed the motor down. I think these factors made my system behave in such a way where the Kp and Kd gains didn't have much affect.
+      </p>
+
     </div>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
