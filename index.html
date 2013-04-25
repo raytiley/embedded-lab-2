@@ -7,7 +7,90 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
   </head>
   <body>
+    <div class="container">
     <h1>Ray Tiley - Lab 2</h1>
+    <hr />
+
+    <h3>Question 1</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Max Speed</th>
+            <th>Kd</th>
+            <th>Kp</th>
+            <th>Rotations / sec</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>255</td>
+            <td>2</td>
+            <td>25</td>
+            <td>1.333</td>
+            <td>
+              This was the max speed of my controller. Control seemed good. There was a bit of overshoot, but not much in the way of ocilation.
+            </td>
+          </tr>
+
+          <tr>
+            <td>150</td>
+            <td>0</td>
+            <td>25</td>
+            <td>1.176</td>
+            <td>
+              Control was great. No overshoot that I could detect.
+            </td>
+          </tr>
+
+          <tr>
+            <td>75</td>
+            <td>0</td>
+            <td>25</td>
+            <td>0.408</td>
+            <td>
+              Control was great. No overshoot, but obviously slow.
+            </td>
+          </tr>
+
+          <tr>
+            <td>25</td>
+            <td>0</td>
+            <td>105</td>
+            <td>0.274</td>
+            <td>
+              This was the lowest speed I can drive my motor at. Control was great. No overshoot, but extremely slow.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <hr />
+      <h3>Question 2</h3>
+      <p>
+        I couldn't find any noticeable difference when changing the step size. I tried values from 10 through 50 but wasn't able to detect any performance gains or loses in the accuracy of the controller. 
+      </p>
+
+      <hr />
+      <h3>Question 3</h3>
+      <p>*** I limited the Torque range to the maximum range of the motor output since my PWD controller would automatically restrict the motor output. This allows the graphs to make more sense. ***
+      <img src="img/1kHz-PD-Controller.png" />
+
+      <hr />
+      <h3>Question 4</h3>
+
+      <img src="img/50Hz-PD-Controller.png" />
+
+      <p>
+        Restricting the PD Controller to 50Hz caused the controller to overshoot the desired target by much more than when running at 1kHz. This is because the controller is not reacting often enough to changes in the reference position and velocity. This is a perfect simulation of how a system can behave if tasks start missing deadlines.
+      </p>
+
+      <img src="img/5Hz-PD-Controller.png" />
+      <p>
+        Restricting the PD Controller to 5Hz made the system unusable. For long distances it only seemed to ocilate around the target a bit, but for the short distance of 5 degrees it got stuck in an ocilating loop and never recovered.
+      </p>
+
+    </div>
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
