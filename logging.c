@@ -15,6 +15,7 @@ extern long g_motor_output;
 extern long g_prop_gain;
 extern long g_der_gain;
 extern int g_velocity;
+extern int g_log_ticks;
 
 void log_task() {
 	if(logging)
@@ -26,7 +27,7 @@ void log_task() {
 void log_print_header() {
 	int length;
 	char tempBuffer[256];
-	length = sprintf(tempBuffer, "Kd, Kp, V, Pr, Pm, T\r\n");
+	length = sprintf(tempBuffer, "Ticks, Kd, Kp, V, Pr, Pm, T\r\n");
 	print_usb(tempBuffer, length);
 }
 
@@ -34,7 +35,7 @@ void log_print_log_row() {
 	// Used to pass to USB_COMM for serial communication
 	int length;
 	char tempBuffer[256];
-	length = sprintf(tempBuffer, "%ld, %ld, %d, %ld, %ld, %ld\r\n", g_der_gain, g_prop_gain, g_velocity, g_target_position, g_current_position, g_motor_output);
+	length = sprintf(tempBuffer, "%d, %ld, %ld, %d, %ld, %ld, %ld\r\n", g_log_ticks, g_der_gain, g_prop_gain, g_velocity, g_target_position, g_current_position, g_motor_output);
 	print_usb(tempBuffer, length);
 }
 

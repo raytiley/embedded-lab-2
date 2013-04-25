@@ -12,6 +12,7 @@ extern char g_velocity_release;
 extern char g_encoder_release;
 extern char g_log_release;
 extern char g_interpolate_release;
+extern int g_log_ticks;
 
 void init_timers() {
 	// WGM30 = 0
@@ -44,7 +45,7 @@ ISR(TIMER3_COMPA_vect) {
 
 	// We basically want to release the pd controller task 1Khz
 	// so every time this interput is called
-	g_pd_release = 1;
+	g_pd_release = 1
 
 	if ( ( g_timer_ticks % VELOCITY_PERIOD ) == 0 ) {
 		g_velocity_release = 1;
@@ -54,7 +55,8 @@ ISR(TIMER3_COMPA_vect) {
 		g_encoder_release = 1;
 	}
 
-	if (( g_timer_ticks % 500) == 0) {
+	if (( g_timer_ticks % 100) == 0) {
+		g_log_ticks++;
 		g_log_release = 1;
 	}
 

@@ -25,6 +25,7 @@ volatile int g_velocity = 0;
 volatile long g_velocity_last_position = 0;
 volatile long g_motor_output = 0;
 volatile char logging = 0;
+volatile int g_log_ticks;
 
 
 
